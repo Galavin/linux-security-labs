@@ -1,0 +1,20 @@
+---
+- name: Настройка базового сервера
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Установить полезные утилиты
+      apt:
+        name:
+          - htop
+          - curl
+          - git
+        state: present
+        update_cache: yes
+
+    - name: Убедиться, что Nginx запущен
+      service:
+        name: nginx
+        state: started
+        enabled: yes
