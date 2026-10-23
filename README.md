@@ -18,3 +18,18 @@
 *   **index.html:** Кастомная веб-страница, которая заменяет стандартную заглушку Nginx.
 *   **Как запустить:** `docker build -t my-custom-site .` и `docker run -d -p 8080:80 my-custom-site`.
 *   **Использованные технологии:** Docker, Nginx, HTML.
+
+## 4. Docker Compose (Мультиконтейнерный стек)
+В файле `docker-compose.yml` описан полноценный стек для веб-приложения и мониторинга.
+*   **Сервисы:** Nginx (веб-сервер), PostgreSQL (база данных), Prometheus (сбор метрик), Grafana (визуализация), Node Exporter (метрики железа).
+*   **Volumes:** Настроено сохранение данных для базы данных PostgreSQL (данные не теряются при пересоздании контейнера).
+*   **Сети:** Сервисы общаются друг с другом по внутренним именам Docker.
+*   **Как запустить:** `docker compose up -d`
+
+## 5. Мониторинг (Prometheus + Grafana)
+*   Файл `prometheus.yml` описывает конфигурацию сбора метрик с самого Prometheus и Node Exporter.
+*   В Grafana настроен дашборд для визуализации нагрузки на CPU, RAM и диски.
+
+## 6. Автоматизация (Ansible)
+*   Файл `ansible-setup.yml` содержит плейбук для автоматической установки базовых утилит (htop, curl, git) и проверки статуса службы Nginx.
+*   **Как запустить:** `ansible-playbook -i inventory ansible-setup.yml -K`
