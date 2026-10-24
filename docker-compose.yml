@@ -46,3 +46,10 @@ services:
 
 volumes:
   db_data:
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    ports:
+      - "3001:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
