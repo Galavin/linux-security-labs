@@ -1,0 +1,21 @@
+name: My First CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  check-scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Check Bash script syntax
+      run: |
+        echo "Проверяем синтаксис mini-siem.sh..."
+        bash -n mini-siem.sh
+        echo "Проверяем синтаксис web-siem.sh..."
+        bash -n web-siem.sh
+        echo "Все скрипты в порядке!"
